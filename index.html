@@ -4,48 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        nav {
+            background: #222;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav input {
+            padding: 10px;
+            width: 220px;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        section {
+            padding: 30px;
+            background: white;
+            margin: 20px;
+        }
+
+        .results {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .place {
+            width: 300px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .place img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+    </style>
 </head>
+
 <body>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#contact">Contact Us</a>
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact Us</a>
 
-        <input type="text" id="searchInput" placeholder="Search destinations">
+    <input type="text" id="searchInput" placeholder="Search destination">
 
-        <button onclick="searchDestination()">Search</button>
-        <button onclick="clearSearch()">Clear</button>
-    </nav>
+    <button onclick="searchPlaces()">Search</button>
+    <button onclick="clearResults()">Clear</button>
+</nav>
 
-    <section id="home">
-        <h1>Welcome to Travel Recommendation</h1>
-        <p>Discover amazing destinations and plan your next unforgettable journey.</p>
-    </section>
+<section id="home">
+    <h1>Travel Recommendation</h1>
+    <p>Welcome! Discover beautiful destinations and get travel recommendations.</p>
 
-    <section id="about">
-        <h2>About Us</h2>
-        <p>
-            We provide travel recommendations to help travelers discover
-            beautiful destinations around the world.
-        </p>
-    </section>
+    <div id="results" class="results"></div>
+</section>
 
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: travel@example.com</p>
-    </section>
+<section id="about">
+    <h2>About Us</h2>
+    <p>
+        We help travelers discover beautiful destinations around the world
+        and make their trips memorable.
+    </p>
+</section>
 
-    <script>
-        function searchDestination() {
-            const search = document.getElementById("searchInput").value;
-            alert("Searching for: " + search);
-        }
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: travel@example.com</p>
 
-        function clearSearch() {
-            document.getElementById("searchInput").value = "";
-        }
-    </script>
+    <form>
+        <input type="email" placeholder="Your email">
+        <br><br>
+        <textarea placeholder="Your message"></textarea>
+        <br><br>
+        <button type="submit">Send</button>
+    </form>
+</section>
+
+<script>
+function searchPlaces() {
+    const keyword = document.getElementById("searchInput").value.toLowerCase();
+    const results = document.getElementById("results");
+
+    results.innerHTML = "";
+
+    if (keyword.includes("beach")) {
+        results.innerHTML = `
+            <div class="place">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Beach">
+                <h2>Beautiful Beach</h2>
+                <p>Enjoy relaxing on a beautiful tropical beach.</p>
+            </div>
+
+            <div class="place">
+                <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57" alt="Tropical Beach">
+                <h2>Tropical Beach</h2>
+                <p>A wonderful destination for your next beach vacation.</p>
+            </div>
+        `;
+    } else {
+        results.innerHTML = "<p>Try searching for <b>beach</b>.</p>";
+    }
+}
+
+function clearResults() {
+    document.getElementById("searchInput").value = "";
+    document.getElementById("results").innerHTML = "";
+}
+</script>
 
 </body>
 </html>
