@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Travel Recommendation</title>
 
     <style>
@@ -14,17 +13,17 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background: #f4f8fb;
             color: #222;
         }
 
         /* Navigation Bar */
         nav {
-            background-color: #222;
+            background: #0b5fa5;
             padding: 15px 25px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
@@ -32,173 +31,215 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
-            padding: 8px;
         }
 
         nav a:hover {
-            background-color: #555;
-            border-radius: 4px;
+            text-decoration: underline;
         }
 
-        nav input {
+        .search-box {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .search-box input {
+            width: 230px;
             padding: 10px;
-            width: 220px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
         }
 
-        nav button {
-            padding: 10px 15px;
+        button {
+            padding: 10px 16px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
         }
 
-        nav button:hover {
-            background-color: #ddd;
+        .search-btn {
+            background: white;
+            color: #0b5fa5;
+        }
+
+        .clear-btn {
+            background: #ddd;
+            color: #222;
+        }
+
+        /* Home */
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+            background: linear-gradient(135deg, #dff4ff, #ffffff);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
         }
 
         /* Sections */
         section {
-            background-color: white;
-            margin: 20px;
-            padding: 35px;
-            border-radius: 8px;
-        }
-
-        h1 {
-            font-size: 40px;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
         h2 {
-            font-size: 28px;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.6;
+            font-size: 30px;
+            color: #0b5fa5;
         }
 
         /* Search Results */
         #results {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
-        .place {
-            width: 320px;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        .card {
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
         }
 
-        .place img {
+        .card img {
             width: 100%;
-            height: 200px;
+            height: 210px;
             object-fit: cover;
-            display: block;
         }
 
-        .place h2 {
-            padding: 0 15px;
-            margin-top: 15px;
+        .card-content {
+            padding: 20px;
         }
 
-        .place p {
-            padding: 0 15px 15px;
+        .card h3 {
+            color: #0b5fa5;
+            margin-top: 0;
         }
 
-        /* Contact Form */
-        form {
-            max-width: 500px;
+        /* Contact */
+        .contact-form {
+            max-width: 600px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
         }
 
-        form input,
-        form textarea {
+        .contact-form input,
+        .contact-form textarea {
             width: 100%;
             padding: 12px;
-            margin-top: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            margin: 8px 0 15px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
         }
 
-        form textarea {
-            height: 120px;
+        .contact-form button {
+            background: #0b5fa5;
+            color: white;
         }
 
-        form button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        footer {
+            text-align: center;
+            background: #17324d;
+            color: white;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 700px) {
+            .search-box {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav>
         <a href="#home">Home</a>
         <a href="#about">About Us</a>
         <a href="#contact">Contact Us</a>
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search destinations"
-        >
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search destinations"
+            >
 
-        <button onclick="searchPlaces()">Search</button>
+            <button class="search-btn" onclick="searchDestinations()">
+                Search
+            </button>
 
-        <button onclick="clearResults()">Clear</button>
+            <button class="clear-btn" onclick="clearSearch()">
+                Clear
+            </button>
+        </div>
     </nav>
 
 
-    <!-- Home Page -->
-    <section id="home">
-
+    <!-- Home -->
+    <header class="hero" id="home">
         <h1>Welcome to Travel Recommendation</h1>
-
         <p>
             Discover amazing destinations and plan your next
             unforgettable journey.
         </p>
-
-        <p>
-            Search for a destination such as <strong>beach</strong>
-            to get travel recommendations.
-        </p>
-
-        <!-- Search Results Appear Here -->
-        <div id="results"></div>
-
-    </section>
+    </header>
 
 
-    <!-- About Us Page -->
+    <!-- About Us -->
     <section id="about">
-
         <h2>About Us</h2>
 
         <p>
             We provide travel recommendations to help travelers
             discover beautiful destinations around the world.
         </p>
-
-        <p>
-            Our goal is to make travel planning simple, enjoyable,
-            and inspiring.
-        </p>
-
     </section>
 
 
-    <!-- Contact Us Page -->
+    <!-- Search Results -->
+    <section>
+        <h2>Travel Recommendations</h2>
+
+        <p>
+            Search for <strong>beach</strong>,
+            <strong>temple</strong>, or
+            <strong>country</strong>.
+        </p>
+
+        <div id="results">
+            <p>
+                Enter a search term above to see travel recommendations.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Contact Us -->
     <section id="contact">
 
         <h2>Contact Us</h2>
@@ -207,120 +248,387 @@
             Email: travel@example.com
         </p>
 
-        <form onsubmit="sendMessage(event)">
+        <div class="contact-form">
 
-            <label for="email">Email:</label>
+            <label>Name</label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your name"
+            >
+
+            <label>Email</label>
 
             <input
                 type="email"
                 id="email"
-                placeholder="Enter your email"
-                required
+                placeholder="Your email"
             >
 
-            <br><br>
-
-            <label for="message">Message:</label>
+            <label>Message</label>
 
             <textarea
                 id="message"
-                placeholder="Enter your message"
-                required
+                rows="5"
+                placeholder="Write your message"
             ></textarea>
 
-            <br><br>
+            <button onclick="sendMessage()">
+                Send Message
+            </button>
 
-            <button type="submit">Send</button>
+            <div id="formMessage"></div>
 
-        </form>
-
+        </div>
     </section>
 
 
-    <!-- JavaScript -->
+    <footer>
+        <p>
+            © 2026 Travel Recommendation
+        </p>
+    </footer>
+
+
     <script>
 
-        function searchPlaces() {
+        /*
+         * ==========================================
+         * TRAVEL RECOMMENDATIONS
+         * ==========================================
+         */
 
-            const keyword =
-                document.getElementById("searchInput")
-                .value
-                .toLowerCase()
-                .trim();
+        const destinations = [
+
+            /* BEACH - Q6 */
+
+            {
+                category: "beach",
+                name: "Maldives Beach",
+                location: "Maldives",
+                image:
+                    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
+                description:
+                    "Crystal-clear water, white sand and a beautiful tropical atmosphere."
+            },
+
+            {
+                category: "beach",
+                name: "Bali Beach",
+                location: "Bali, Indonesia",
+                image:
+                    "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=80",
+                description:
+                    "A beautiful beach destination with sunsets, surfing and relaxing views."
+            },
+
+
+            /* TEMPLE - Q7 */
+
+            {
+                category: "temple",
+                name: "Angkor Wat",
+                location: "Cambodia",
+                image:
+                    "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=900&q=80",
+                description:
+                    "One of the world's most famous temple complexes and a remarkable historical destination."
+            },
+
+            {
+                category: "temple",
+                name: "Temple of Heaven",
+                location: "China",
+                image:
+                    "https://images.unsplash.com/photo-1537531383496-f4749b803a7a?auto=format&fit=crop&w=900&q=80",
+                description:
+                    "A spectacular historic temple complex surrounded by beautiful gardens."
+            },
+
+
+            /* COUNTRY - Q8 */
+
+            {
+                category: "country",
+                name: "Japan",
+                location: "Japan",
+                image:
+                    "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80",
+                description:
+                    "Explore Japan's temples, cities, mountains and unique cultural experiences."
+            },
+
+            {
+                category: "country",
+                name: "Switzerland",
+                location: "Switzerland",
+                image:
+                    "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=900&q=80",
+                description:
+                    "Discover beautiful mountains, lakes and scenic villages in Switzerland."
+            }
+
+        ];
+
+
+        /*
+         * ==========================================
+         * SEARCH FUNCTION
+         * ==========================================
+         */
+
+        function searchDestinations() {
+
+            const input =
+                document.getElementById("searchInput");
 
             const results =
                 document.getElementById("results");
 
-            results.innerHTML = "";
-
-            if (keyword.includes("beach")) {
-
-                results.innerHTML = `
-
-                    <div class="place">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
-                            alt="Beautiful tropical beach"
-                        >
-
-                        <h2>Beautiful Beach</h2>
-
-                        <p>
-                            Enjoy a relaxing vacation on
-                            this beautiful tropical beach.
-                        </p>
-
-                    </div>
+            const searchTerm =
+                input.value.trim().toLowerCase();
 
 
-                    <div class="place">
+            if (searchTerm === "") {
 
-                        <img
-                            src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57"
-                            alt="Tropical beach destination"
-                        >
+                results.innerHTML =
+                    "<p>Please enter a search term.</p>";
 
-                        <h2>Tropical Beach</h2>
+                return;
+            }
 
-                        <p>
-                            Discover an amazing tropical beach
-                            destination for your next vacation.
-                        </p>
 
-                    </div>
+            /*
+             * BEACH SEARCH
+             * Q6 requirement
+             */
 
-                `;
+            if (searchTerm.includes("beach")) {
+
+                const beachResults =
+                    destinations.filter(
+                        destination =>
+                            destination.category === "beach"
+                    );
+
+                displayResults(
+                    beachResults,
+                    "Beach Recommendations"
+                );
+
+                return;
+            }
+
+
+            /*
+             * TEMPLE SEARCH
+             * Q7 requirement
+             */
+
+            if (searchTerm.includes("temple")) {
+
+                const templeResults =
+                    destinations.filter(
+                        destination =>
+                            destination.category === "temple"
+                    );
+
+                displayResults(
+                    templeResults,
+                    "Temple Recommendations"
+                );
+
+                return;
+            }
+
+
+            /*
+             * COUNTRY SEARCH
+             * Q8 requirement
+             */
+
+            if (searchTerm.includes("country")) {
+
+                const countryResults =
+                    destinations.filter(
+                        destination =>
+                            destination.category === "country"
+                    );
+
+                displayResults(
+                    countryResults,
+                    "Country Recommendations"
+                );
+
+                return;
+            }
+
+
+            /*
+             * Also allow direct destination names
+             */
+
+            const matchingResults =
+                destinations.filter(destination =>
+
+                    (
+                        destination.name +
+                        " " +
+                        destination.location +
+                        " " +
+                        destination.description
+                    )
+                    .toLowerCase()
+                    .includes(searchTerm)
+
+                );
+
+
+            if (matchingResults.length > 0) {
+
+                displayResults(
+                    matchingResults,
+                    "Search Results"
+                );
 
             } else {
 
                 results.innerHTML = `
                     <p>
-                        Please search for
-                        <strong>beach</strong>
-                        to see beach recommendations.
+                        No recommendations found.
+                        Try searching for
+                        <strong>beach</strong>,
+                        <strong>temple</strong>,
+                        or <strong>country</strong>.
                     </p>
                 `;
-
             }
+
         }
 
 
-        function clearResults() {
+        /*
+         * ==========================================
+         * DISPLAY RESULTS
+         * ==========================================
+         */
+
+        function displayResults(items, title) {
+
+            const results =
+                document.getElementById("results");
+
+
+            let html = `
+                <div style="grid-column:1/-1;">
+                    <h2>${title}</h2>
+                </div>
+            `;
+
+
+            items.forEach(destination => {
+
+                html += `
+
+                    <article class="card">
+
+                        <img
+                            src="${destination.image}"
+                            alt="${destination.name}"
+                        >
+
+                        <div class="card-content">
+
+                            <h3>
+                                ${destination.name}
+                            </h3>
+
+                            <p>
+                                <strong>
+                                    ${destination.location}
+                                </strong>
+                            </p>
+
+                            <p>
+                                ${destination.description}
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            });
+
+
+            results.innerHTML = html;
+        }
+
+
+        /*
+         * ==========================================
+         * CLEAR BUTTON
+         * ==========================================
+         */
+
+        function clearSearch() {
 
             document.getElementById("searchInput").value = "";
 
-            document.getElementById("results").innerHTML = "";
-
+            document.getElementById("results").innerHTML = `
+                <p>
+                    Enter a search term above to see
+                    travel recommendations.
+                </p>
+            `;
         }
 
 
-        function sendMessage(event) {
+        /*
+         * ==========================================
+         * CONTACT FORM
+         * ==========================================
+         */
 
-            event.preventDefault();
+        function sendMessage() {
 
-            alert("Thank you! Your message has been received.");
+            const name =
+                document.getElementById("name").value.trim();
 
+            const email =
+                document.getElementById("email").value.trim();
+
+            const message =
+                document.getElementById("message").value.trim();
+
+            const formMessage =
+                document.getElementById("formMessage");
+
+
+            if (
+                name === "" ||
+                email === "" ||
+                message === ""
+            ) {
+
+                formMessage.innerHTML = `
+                    <p style="color:red;">
+                        Please complete all fields.
+                    </p>
+                `;
+
+                return;
+            }
+
+
+            formMessage.innerHTML = `
+                <p style="color:green;">
+                    Thank you, ${name}!
+                    Your message has been received.
+                </p>
+            `;
         }
 
     </script>
