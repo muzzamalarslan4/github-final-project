@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Recommendation</title>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact Us</a>
+
+        <input type="text" id="searchInput" placeholder="Search destinations">
+
+        <button onclick="searchDestination()">Search</button>
+        <button onclick="clearSearch()">Clear</button>
+    </nav>
+
+    <section id="home">
+        <h1>Welcome to Travel Recommendation</h1>
+        <p>Discover amazing destinations and plan your next unforgettable journey.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>
+            We provide travel recommendations to help travelers discover
+            beautiful destinations around the world.
+        </p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: travel@example.com</p>
+    </section>
+
+    <script>
+        function searchDestination() {
+            const search = document.getElementById("searchInput").value;
+            alert("Searching for: " + search);
+        }
+
+        function clearSearch() {
+            document.getElementById("searchInput").value = "";
+        }
+    </script>
+
+</body>
+</html>
