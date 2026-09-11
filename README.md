@@ -1,16 +1,29 @@
-# Introduction to Git and GitHub
+# e-plantShopping
 
-## Simple Interest Calculator
+## Project Description
 
-A calculator that calculates simple interest given principal, annual rate of interest and time period in years.
+e-plantShopping is a plant shopping web application that allows users to browse and shop for plants online.
 
-```
-Input:
-   p, principal amount
-   t, time period in years
-   r, annual rate of interest
-Output
-   simple interest = p*t*r
-```
+The application provides a simple and user-friendly shopping experience where users can view plant products, add products to the shopping cart, remove products, and update product quantities.
 
-_© 2022 XYZ, Inc._
+## Features
+
+- Plant product listing
+- Product information and images
+- Add plants to shopping cart
+- Remove plants from shopping cart
+- Update product quantities
+- Shopping cart total
+- Responsive user interface
+
+## Technologies Used
+
+- React
+- JavaScript
+- HTML
+- CSS
+- Redux Toolkit
+
+## Project Purpose
+
+The purpose of e-plantShopping is to provide an easy-to-use online plant shopping experience.
